@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "385710702511",
+    "project_id": "gruppen-eaff4",
+    "storage_bucket": "gruppen-eaff4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385710702511:android:338eb0043ac55b5e1b395a",
+        "android_client_info": {
+          "package_name": "com.project.gruppen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385710702511-h1l2rs3epofkehdg7d9ohkqjmllsas2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS7j-WlC6m8jcKMYd96qQbQcrwVgUD0rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385710702511-h1l2rs3epofkehdg7d9ohkqjmllsas2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
