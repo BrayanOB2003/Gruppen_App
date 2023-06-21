@@ -5,7 +5,7 @@ import com.project.gruppen.model.GroupRoom
 import com.project.gruppen.model.User
 
 interface HomeOperations {
-    fun createGroup(id: String, name: String, description: String, leader: User,
+    fun createGroup(id: String, name: String, description: String, user: User,
                     groups: MutableList<Group>)
 
     fun enterTheGroupRoom(group: Group): GroupRoom
