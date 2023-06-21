@@ -13,4 +13,8 @@ class Home(private val currentUser: User) {
     fun enterTheGroupRoom(group: Group) {
         groupRoom = homeService.enterTheGroupRoom(group)
     }
+
+    fun enterTheGroupRoom(groupId: String, groups: MutableList<Group>){
+        groupRoom = homeService.enterTheGroupRoom(groupId, groups)
+    }
 }

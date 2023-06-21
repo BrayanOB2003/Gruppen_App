@@ -17,4 +17,11 @@ class HomeService : HomeOperations{
     override fun enterTheGroupRoom(group: Group): GroupRoom {
         return GroupRoom(group)
     }
+
+    override fun enterTheGroupRoom(groupId: String, groups: MutableList<Group>): GroupRoom {
+        val group: Group = groups.firstOrNull { group -> group.id == groupId }!!
+        return GroupRoom(group)
+    }
+
+
 }

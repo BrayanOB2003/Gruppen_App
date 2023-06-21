@@ -9,4 +9,6 @@ interface HomeOperations {
                     groups: MutableList<Group>)
 
     fun enterTheGroupRoom(group: Group): GroupRoom
+
+    fun enterTheGroupRoom(groupId: String, groups: MutableList<Group>): GroupRoom
 }
