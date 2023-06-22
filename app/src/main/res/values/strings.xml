@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Gruppen</string>
     <string name="title_activity_login">Login</string>
+
+    Text to Login Screen
+    <string name="name_email">Email</string>
+    <string name="name_password">Password</string>
+    <string name="name_user">Name</string>
+
+    <string name="email_placeholder">example@gmail.com</string>
+    <string name="email_label">Email</string>
+    <string name="email_description">Email address of user</string>
+
+    <string name="password_placeholder"></string>
+    <string name="password_label">Password</string>
+    <string name="password_description">Password of user access</string>
+
+    <string name="show_password_button_description">Show password</string>
+    <string name="hide_password_button_description">Hide password</string>
 </resources>
