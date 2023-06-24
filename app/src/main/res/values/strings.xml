@@ -15,6 +15,13 @@
     <string name="password_label">Password</string>
     <string name="password_description">Password of user access</string>
 
+    <string name="name_label">Name</string>
+    <string name="name_placeholder"></string>
+    <string name="name_description">Name of user</string>
+
     <string name="show_password_button_description">Show password</string>
     <string name="hide_password_button_description">Hide password</string>
+
+    <string name="login_button_text">Sign In</string>
+    <string name="register_button_text">Sign Up</string>
 </resources>
