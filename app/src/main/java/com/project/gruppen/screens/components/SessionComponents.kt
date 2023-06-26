@@ -33,7 +33,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.project.gruppen.R
 
-@Preview
 @Composable
 fun LoginFuntion(){
     var passwordText by rememberSaveable { mutableStateOf("") }

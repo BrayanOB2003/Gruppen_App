@@ -2,7 +2,7 @@
     <string name="app_name">Gruppen</string>
     <string name="title_activity_login">Login</string>
 
-    Text to Login Screen
+    Text to Login and Register Screen
     <string name="name_email">Email</string>
     <string name="name_password">Password</string>
     <string name="name_user">Name</string>
@@ -18,6 +18,9 @@
     <string name="name_label">Name</string>
     <string name="name_placeholder"></string>
     <string name="name_description">Name of user</string>
+
+    <string name="title_register">Create Account</string>
+    <string name="title_login">Welcome!</string>
 
     <string name="show_password_button_description">Show password</string>
     <string name="hide_password_button_description">Hide password</string>
