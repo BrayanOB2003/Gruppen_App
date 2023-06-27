@@ -1,8 +1,10 @@
 package com.project.gruppen.screens.components
 
+import android.widget.CompoundButton.OnCheckedChangeListener
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,11 +16,14 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -124,5 +129,23 @@ fun Button(text: String){
         modifier = Modifier.size(width = 120.dp, height = 55.dp),
         colors = buttonColors) {
         Text(text, fontSize = 17.sp)
+    }
+}
+
+@Composable
+fun CheckBox(isChecked: Boolean, onCheckedChange: (Boolean) -> Unit){
+
+    val checkBoxColors = CheckboxDefaults.colors(
+
+    )
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Checkbox(
+            checked = isChecked,
+            onCheckedChange = onCheckedChange,
+        )
+        Text(stringResource(id = R.string.remember_button_text), color = colorResource(id = R.color.white))
     }
 }

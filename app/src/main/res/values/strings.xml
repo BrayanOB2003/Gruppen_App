@@ -27,4 +27,9 @@
 
     <string name="login_button_text">Sign In</string>
     <string name="register_button_text">Sign Up</string>
+
+    <string name="remember_button_text">Remember me</string>
+    <string name="forget_password_text">Forget password?</string>
+    <string name="sign_up_text">Sign up</string>
+
 </resources>
