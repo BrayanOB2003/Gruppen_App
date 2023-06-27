@@ -126,9 +126,3 @@ fun Button(text: String){
         Text(text, fontSize = 17.sp)
     }
 }
-
-@Preview
-@Composable
-fun viewButton(){
-    Button("Sign In")
-}
