@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.project.gruppen.R
 import com.project.gruppen.screens.components.Button
 import com.project.gruppen.screens.components.ImageBackground
@@ -31,9 +32,8 @@ import com.project.gruppen.screens.components.TextFieldName
 import com.project.gruppen.screens.components.TextFieldPassword
 
 
-@Preview
 @Composable
-fun Register(){
+fun Register(navController: NavController){
     var nameText by rememberSaveable { mutableStateOf("") }
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }

@@ -28,16 +28,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.project.gruppen.R
+import com.project.gruppen.navigation.AppScreens
 import com.project.gruppen.screens.components.Button
 import com.project.gruppen.screens.components.ImageBackground
 import com.project.gruppen.screens.components.TextFieldEmail
 import com.project.gruppen.screens.components.TextFieldPassword
 
 
-@Preview
 @Composable
-fun Login(){
+fun Login(navController: NavController){
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
     val isChecked = remember { mutableStateOf(false) }
@@ -75,14 +76,14 @@ fun Login(){
                     text = stringResource(id = R.string.forget_password_text),
                     color = colorResource(id = R.color.white),
                     modifier = Modifier.padding(20.dp).clickable {
-                        
+
                     }
                 )
                 Text(
                     text = stringResource(id = R.string.sign_up_text),
                     color = colorResource(id = R.color.white),
                     modifier = Modifier.padding(20.dp).clickable {
-                        
+                        navController.navigate(route = AppScreens.LoginScreen.route)
                     }
                 )
             }
