@@ -7,11 +7,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.project.gruppen.screens.Login
 import com.project.gruppen.screens.Register
+import com.project.gruppen.screens.components.ExpandHorizontally
+import com.project.gruppen.screens.components.SliceTransition
 
 @Preview
 @Composable
 fun AppNavigation(){
     val navController = rememberNavController()
+
     NavHost(navController = navController, startDestination = AppScreens.LoginScreen.route){
         composable(route = AppScreens.LoginScreen.route){
             Login(navController)
@@ -20,4 +23,5 @@ fun AppNavigation(){
             Register(navController)
         }
     }
+
 }

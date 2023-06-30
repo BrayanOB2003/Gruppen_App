@@ -31,5 +31,6 @@
     <string name="remember_button_text">Remember me</string>
     <string name="forget_password_text">Forget password?</string>
     <string name="sign_up_text">Sign up</string>
+    <string name="registration_done">Already registered?</string>
 
 </resources>

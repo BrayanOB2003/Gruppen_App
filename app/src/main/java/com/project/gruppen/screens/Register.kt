@@ -1,5 +1,6 @@
 package com.project.gruppen.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,11 +21,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.project.gruppen.R
+import com.project.gruppen.navigation.AppScreens
 import com.project.gruppen.screens.components.Button
 import com.project.gruppen.screens.components.ImageBackground
 import com.project.gruppen.screens.components.TextFieldEmail
@@ -47,8 +48,11 @@ fun Register(navController: NavController){
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Text(stringResource(id = R.string.title_register),
-                fontSize = 60.sp, fontFamily = FontFamily(Font(R.font.quicksand)),
-                fontWeight = FontWeight.SemiBold, color = Color.White, textAlign = TextAlign.Center,
+                fontSize = 60.sp,
+                fontFamily = FontFamily(Font(R.font.quicksand)),
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
+                textAlign = TextAlign.Center,
                 maxLines = 2
             )
             Spacer(modifier = Modifier.height(30.dp))
@@ -59,6 +63,15 @@ fun Register(navController: NavController){
             TextFieldPassword(passwordText = passwordText,  onPasswordChange = {passwordText = it})
             Spacer(modifier = Modifier.height(40.dp))
             Button(stringResource(id = R.string.register_button_text))
+            Spacer(modifier = Modifier.height(80.dp))
+            Text(
+                text = stringResource(id = R.string.registration_done),
+                color = Color.White,
+                modifier = Modifier
+                    .clickable {
+                        navController.navigate(route = AppScreens.LoginScreen.route)
+                    }
+            )
         }
     }
 }

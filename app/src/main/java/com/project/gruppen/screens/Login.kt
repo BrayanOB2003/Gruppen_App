@@ -41,7 +41,7 @@ import com.project.gruppen.screens.components.TextFieldPassword
 fun Login(navController: NavController){
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
-    val isChecked = remember { mutableStateOf(false) }
+    val visible  = remember { mutableStateOf(true) }
 
     ImageBackground(drawableId = R.drawable.background2) {
 
@@ -83,7 +83,7 @@ fun Login(navController: NavController){
                     text = stringResource(id = R.string.sign_up_text),
                     color = colorResource(id = R.color.white),
                     modifier = Modifier.padding(20.dp).clickable {
-                        navController.navigate(route = AppScreens.LoginScreen.route)
+                        navController.navigate(route = AppScreens.RegisterScreen.route)
                     }
                 )
             }
