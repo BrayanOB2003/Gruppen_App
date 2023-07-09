@@ -5,6 +5,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.project.gruppen.screens.Home
 import com.project.gruppen.screens.Login
 import com.project.gruppen.screens.Register
 import com.project.gruppen.screens.components.ExpandHorizontally
@@ -21,6 +22,9 @@ fun AppNavigation(){
         }
         composable(route = AppScreens.RegisterScreen.route){
             Register(navController)
+        }
+        composable(route = AppScreens.HomeScreen.route){
+            Home(navController)
         }
     }
 

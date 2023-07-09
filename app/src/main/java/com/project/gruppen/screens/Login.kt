@@ -65,7 +65,9 @@ fun Login(navController: NavController){
             }
 
             Spacer(modifier = Modifier.height(40.dp))
-            Button(stringResource(id = R.string.login_button_text))
+            Button(stringResource(id = R.string.login_button_text), onClick = {
+
+            })
             Spacer(modifier = Modifier.height(40.dp))
 
             Row(
