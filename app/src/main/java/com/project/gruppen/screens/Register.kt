@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -46,7 +47,6 @@ fun Register(navController: NavController){
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
     var showToast by remember { mutableStateOf(false) }
-    var user: User? = null
     var register = Register()
 
     ImageBackground(drawableId = R.drawable.background1) {
@@ -73,8 +73,8 @@ fun Register(navController: NavController){
             TextFieldPassword(passwordText = passwordText,  onPasswordChange = {passwordText = it})
             Spacer(modifier = Modifier.height(40.dp))
             Button(stringResource(id = R.string.register_button_text), onClick = {
-                user = register.registerUser(name = nameText, email = emailText, password = passwordText)
-                if(user == null){
+                var success = register.registerUser(name = nameText, email = emailText, password = passwordText)
+                if(!success){
                     showToast = true
                 } else {
                     navController.navigate(route = AppScreens.HomeScreen.route)
