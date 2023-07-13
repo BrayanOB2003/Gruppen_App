@@ -46,7 +46,7 @@ fun Register(navController: NavController){
     var nameText by rememberSaveable { mutableStateOf("") }
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
-    var showToast by remember { mutableStateOf(false) }
+    var registerSuccess by rememberSaveable { mutableStateOf(false) }
     var register = Register()
 
     ImageBackground(drawableId = R.drawable.background1) {
@@ -73,12 +73,13 @@ fun Register(navController: NavController){
             TextFieldPassword(passwordText = passwordText,  onPasswordChange = {passwordText = it})
             Spacer(modifier = Modifier.height(40.dp))
             Button(stringResource(id = R.string.register_button_text), onClick = {
-                var success = register.registerUser(name = nameText, email = emailText, password = passwordText)
-                if(!success){
-                    showToast = true
-                } else {
-                    navController.navigate(route = AppScreens.HomeScreen.route)
-                }
+                navController.navigate(route = AppScreens.HomeScreen.route)
+                register.registerUser(
+                    name = nameText,
+                    email = emailText,
+                    password = passwordText,
+                    callback = {registerSuccess = it}
+                )
             })
             Spacer(modifier = Modifier.height(80.dp))
             Text(
@@ -89,10 +90,10 @@ fun Register(navController: NavController){
                         navController.navigate(route = AppScreens.LoginScreen.route)
                     }
             )
-            if(showToast)
-            {
+            if(registerSuccess) {
+                navController.navigate(route = AppScreens.HomeScreen.route)
+            } else {
                 ToastMessage(message = stringResource(id = R.string.registration_toast_message))
-                showToast = false
             }
         }
     }

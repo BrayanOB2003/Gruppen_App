@@ -15,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 import com.project.gruppen.R
 import com.project.gruppen.model.User
 import com.project.gruppen.screens.components.ToastMessage
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -23,15 +24,14 @@ class RegisterRepository() {
 
     private val auth: FirebaseAuth = Firebase.auth
     private val db = Firebase.firestore
-    suspend fun registerUser(email: String, password: String, name: String): Boolean = suspendCoroutine { continuation ->
+    fun registerUser(email: String, password: String, name: String, callback: (Boolean) -> Unit) {
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener() { task ->
-                if(task.isSuccessful){
-                    continuation.resume(true)
-                } else {
-                    continuation.resume(false)
-                }
+                callback(task.isSuccessful)
+            }
+            .addOnFailureListener {
+                callback(false)
             }
     }
 }

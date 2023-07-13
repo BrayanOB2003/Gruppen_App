@@ -6,14 +6,8 @@ import kotlinx.coroutines.runBlocking
 
 class Register {
 
-    fun registerUser(name: String, email: String, password: String): Boolean {
+    fun registerUser(name: String, email: String, password: String, callback: (Boolean) -> Unit) {
         val auth = RegisterRepository()
-        var successs: Boolean
-
-        runBlocking {
-            successs = auth.registerUser(email, password, name)
-        }
-
-        return successs
+        auth.registerUser(email, password, name, callback)
     }
 }
