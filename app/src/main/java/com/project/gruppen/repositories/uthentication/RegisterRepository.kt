@@ -30,8 +30,5 @@ class RegisterRepository() {
             .addOnCompleteListener() { task ->
                 callback(task.isSuccessful)
             }
-            .addOnFailureListener {
-                callback(false)
-            }
     }
 }

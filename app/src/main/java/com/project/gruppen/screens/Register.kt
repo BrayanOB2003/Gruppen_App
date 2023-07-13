@@ -42,11 +42,11 @@ import com.project.gruppen.screens.components.ToastMessage
 
 
 @Composable
-fun Register(navController: NavController){
+fun Register(navController: NavController) {
     var nameText by rememberSaveable { mutableStateOf("") }
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
-    var registerSuccess by rememberSaveable { mutableStateOf(false) }
+    var registerSuccess by remember { mutableStateOf<Boolean?>(null) }
     var register = Register()
 
     ImageBackground(drawableId = R.drawable.background1) {
@@ -56,8 +56,9 @@ fun Register(navController: NavController){
                 .fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Text(stringResource(id = R.string.title_register),
+        ) {
+            Text(
+                stringResource(id = R.string.title_register),
                 fontSize = 60.sp,
                 fontFamily = FontFamily(Font(R.font.quicksand)),
                 fontWeight = FontWeight.SemiBold,
@@ -66,19 +67,18 @@ fun Register(navController: NavController){
                 maxLines = 2
             )
             Spacer(modifier = Modifier.height(30.dp))
-            TextFieldName(nameText = nameText, onNameChange = {nameText = it})
+            TextFieldName(nameText = nameText, onNameChange = { nameText = it })
             Spacer(modifier = Modifier.height(20.dp))
-            TextFieldEmail(emailText = emailText, onEmailChange ={emailText = it})
+            TextFieldEmail(emailText = emailText, onEmailChange = { emailText = it })
             Spacer(modifier = Modifier.height(20.dp))
-            TextFieldPassword(passwordText = passwordText,  onPasswordChange = {passwordText = it})
+            TextFieldPassword(passwordText = passwordText, onPasswordChange = { passwordText = it })
             Spacer(modifier = Modifier.height(40.dp))
             Button(stringResource(id = R.string.register_button_text), onClick = {
-                navController.navigate(route = AppScreens.HomeScreen.route)
                 register.registerUser(
                     name = nameText,
                     email = emailText,
                     password = passwordText,
-                    callback = {registerSuccess = it}
+                    callback = { registerSuccess = it }
                 )
             })
             Spacer(modifier = Modifier.height(80.dp))
@@ -90,11 +90,24 @@ fun Register(navController: NavController){
                         navController.navigate(route = AppScreens.LoginScreen.route)
                     }
             )
-            if(registerSuccess) {
-                navController.navigate(route = AppScreens.HomeScreen.route)
-            } else {
-                ToastMessage(message = stringResource(id = R.string.registration_toast_message))
+        }
+
+        LaunchedEffect(registerSuccess) {
+            when (registerSuccess) {
+                true -> {
+                    navController.navigate(route = AppScreens.HomeScreen.route)
+                }
+                else -> {}
             }
+        }
+
+        when (registerSuccess) {
+            false -> {
+                ToastMessage(message = stringResource(id = R.string.registration_toast_message))
+                registerSuccess = null
+            }
+
+            else -> {}
         }
     }
 }

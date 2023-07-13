@@ -1,5 +1,6 @@
 package com.project.gruppen.navigation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
@@ -28,4 +29,11 @@ fun AppNavigation(){
         }
     }
 
+    BackHandler {
+        if (navController.currentDestination?.route == AppScreens.HomeScreen.route) {
+
+        } else {
+            navController.popBackStack()
+        }
+    }
 }
