@@ -28,7 +28,22 @@ class RegisterRepository() {
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener() { task ->
-                callback(task.isSuccessful)
+                if(task.isSuccessful){
+                    val user = hashMapOf(
+                        "name" to name,
+                        "email" to email,
+                    )
+                    //Add a new document with generated id
+                    db.collection("users")
+                        .add(user)
+                        .addOnFailureListener {
+                            callback(false)
+                        }
+
+                    callback(task.isSuccessful)
+                } else {
+                    callback(task.isSuccessful)
+                }
             }
     }
 }

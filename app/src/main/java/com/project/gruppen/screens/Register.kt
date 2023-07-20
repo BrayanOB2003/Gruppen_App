@@ -47,6 +47,7 @@ fun Register(navController: NavController) {
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
     var registerSuccess by remember { mutableStateOf<Boolean?>(null) }
+    var registerLoading by remember { mutableStateOf<Boolean>(false) }
     var register = Register()
 
     ImageBackground(drawableId = R.drawable.background1) {
@@ -74,6 +75,7 @@ fun Register(navController: NavController) {
             TextFieldPassword(passwordText = passwordText, onPasswordChange = { passwordText = it })
             Spacer(modifier = Modifier.height(40.dp))
             Button(stringResource(id = R.string.register_button_text), onClick = {
+                registerLoading = true
                 register.registerUser(
                     name = nameText,
                     email = emailText,
@@ -97,17 +99,22 @@ fun Register(navController: NavController) {
                 true -> {
                     navController.navigate(route = AppScreens.HomeScreen.route)
                 }
+
                 else -> {}
             }
         }
-
         when (registerSuccess) {
             false -> {
                 ToastMessage(message = stringResource(id = R.string.registration_toast_message))
                 registerSuccess = null
+                emailText = ""
+                registerLoading = false
             }
 
             else -> {}
+        }
+        if(registerLoading){
+            LoadingScreen()
         }
     }
 }
