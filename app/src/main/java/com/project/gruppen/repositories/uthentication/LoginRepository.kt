@@ -11,17 +11,11 @@ import kotlin.coroutines.suspendCoroutine
 class LoginRepository {
 
     private val auth: FirebaseAuth = Firebase.auth
-    suspend fun loginUser(email: String, password: String): User? = suspendCoroutine { continuation ->
+    fun loginUser(email: String, password: String, callback: (Boolean) -> Unit) {
         var user: User? = null
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                if(task.isSuccessful){
-                    val id = task.result.user?.uid.toString()
-                    user = User(id, "name", email)
-                    continuation.resume(user)
-                } else {
-                    continuation.resume(user)
-                }
+                callback(task.isSuccessful)
             }
     }
 }

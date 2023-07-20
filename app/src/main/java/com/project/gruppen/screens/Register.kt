@@ -47,7 +47,7 @@ fun Register(navController: NavController) {
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
     var registerSuccess by remember { mutableStateOf<Boolean?>(null) }
-    var registerLoading by remember { mutableStateOf<Boolean>(false) }
+    var registerLoading by remember { mutableStateOf(false) }
     var register = Register()
 
     ImageBackground(drawableId = R.drawable.background1) {

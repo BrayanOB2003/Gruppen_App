@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,18 +31,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.project.gruppen.R
+import com.project.gruppen.model.auth.Login
 import com.project.gruppen.navigation.AppScreens
 import com.project.gruppen.screens.components.Button
 import com.project.gruppen.screens.components.ImageBackground
 import com.project.gruppen.screens.components.TextFieldEmail
 import com.project.gruppen.screens.components.TextFieldPassword
+import com.project.gruppen.screens.components.ToastMessage
 
 
 @Composable
 fun Login(navController: NavController){
     var passwordText by rememberSaveable { mutableStateOf("") }
     var emailText by rememberSaveable { mutableStateOf("") }
-    val visible  = remember { mutableStateOf(true) }
+    var loginSuccess by remember { mutableStateOf<Boolean?>(null) }
+    var loginLoading by remember { mutableStateOf(false) }
 
     ImageBackground(drawableId = R.drawable.background2) {
 
@@ -66,6 +70,12 @@ fun Login(navController: NavController){
 
             Spacer(modifier = Modifier.height(40.dp))
             Button(stringResource(id = R.string.login_button_text), onClick = {
+                loginLoading = true
+                val auth = Login()
+                auth.loginUser(
+                    email = emailText,
+                    password = passwordText,
+                    callback =  { loginSuccess = it })
 
             })
             Spacer(modifier = Modifier.height(40.dp))
@@ -77,17 +87,44 @@ fun Login(navController: NavController){
                 Text(
                     text = stringResource(id = R.string.forget_password_text),
                     color = colorResource(id = R.color.white),
-                    modifier = Modifier.padding(20.dp).clickable {
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .clickable {
 
-                    }
+                        }
                 )
                 Text(
                     text = stringResource(id = R.string.sign_up_text),
                     color = colorResource(id = R.color.white),
-                    modifier = Modifier.padding(20.dp).clickable {
-                        navController.navigate(route = AppScreens.RegisterScreen.route)
-                    }
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .clickable {
+                            navController.navigate(route = AppScreens.RegisterScreen.route)
+                        }
                 )
+            }
+
+            LaunchedEffect(loginSuccess) {
+                when (loginSuccess) {
+                    true -> {
+                        navController.navigate(route = AppScreens.HomeScreen.route)
+                    }
+
+                    else -> {}
+                }
+            }
+            when (loginSuccess) {
+                false -> {
+                    ToastMessage(message = stringResource(id = R.string.registration_toast_message))
+                    loginSuccess = null
+                    emailText = ""
+                    loginLoading = false
+                }
+
+                else -> {}
+            }
+            if(loginLoading){
+                LoadingScreen()
             }
         }
     }
